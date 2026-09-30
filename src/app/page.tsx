@@ -106,33 +106,6 @@ export default function ApexHome() {
 
     const user = getCurrentUser();
 
-    // Auto-normalize student user plan if needed
-    if (/student|fresher|intern/i.test(user.profile.currentRole || '')) {
-      user.profile.candidateTrack = 'student_fresher';
-      user.profile.yearsOfExperience = 0;
-      user.profile.experienceLevel = 'Junior (0-2 yrs)';
-      if (user.chatSessions && user.chatSessions.length > 0 && user.chatSessions[0].messages?.length > 0) {
-        const msgs = user.chatSessions[0].messages;
-        if (msgs[0].content.includes('3 YOE') || msgs[0].content.includes('3 years in SaaS') || msgs[0].content.includes('2+ pods')) {
-          msgs[0].content = generateCareerPlanFromProfile(user.profile);
-        }
-        // Ensure user message is at the top of the chat
-        if (!msgs.some(m => m.role === 'user')) {
-          user.chatSessions[0].messages = [
-            {
-              id: 'msg_u_init',
-              role: 'user',
-              content: `Generate my strategic career roadmap for ${user.profile.targetRoles?.[0] || 'data scientist'} based on my diagnostic answers.`,
-              createdAt: '10:00 AM',
-              mode: 'strategy'
-            },
-            ...msgs
-          ];
-        }
-      }
-      updateActiveUserData(user);
-    }
-
     setCurrentUser(user);
     const sessions = user.chatSessions || [];
     if (sessions.length > 0) {
