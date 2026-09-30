@@ -2,26 +2,220 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg-main: #000000;
+    --bg-sidebar: #09090b;
+    --bg-surface: #121214;
+    --bg-surface-hover: #1c1c20;
+    --bg-input: #121214;
+    --bg-bubble-user: #27272a;
+    --text-bubble-user: #ffffff;
+    --bg-accent: #ffffff;
+    --text-accent: #000000;
+    --border-color: #27272a;
+    --border-subtle: #1c1c1f;
+    --text-main: #ffffff;
+    --text-muted: #a1a1aa;
+    --badge-bg: #1c1c20;
+    --badge-border: #3f3f46;
+    --badge-text: #ffffff;
+    --assistant-avatar-bg: #ffffff;
+    --assistant-avatar-text: #000000;
+  }
+
+  /* BLACK & WHITE DARK THEME (Monochrome Dark) */
+  .theme-bw-dark {
+    --bg-main: #000000;
+    --bg-sidebar: #09090b;
+    --bg-surface: #121214;
+    --bg-surface-hover: #1c1c20;
+    --bg-input: #121214;
+    --bg-bubble-user: #27272a;
+    --text-bubble-user: #ffffff;
+    --bg-accent: #ffffff;
+    --text-accent: #000000;
+    --border-color: #27272a;
+    --border-subtle: #1c1c1f;
+    --text-main: #ffffff;
+    --text-muted: #a1a1aa;
+    --badge-bg: #1c1c20;
+    --badge-border: #3f3f46;
+    --badge-text: #ffffff;
+    --assistant-avatar-bg: #ffffff;
+    --assistant-avatar-text: #000000;
+    background-color: #000000;
+    color: #ffffff;
+  }
+
+  /* BLACK & WHITE LIGHT THEME (Monochrome Light) */
+  .theme-bw-light {
+    --bg-main: #ffffff;
+    --bg-sidebar: #f8f8f9;
+    --bg-surface: #ffffff;
+    --bg-surface-hover: #f4f4f5;
+    --bg-input: #ffffff;
+    --bg-bubble-user: #f4f4f5;
+    --text-bubble-user: #09090b;
+    --bg-accent: #09090b;
+    --text-accent: #ffffff;
+    --border-color: #e4e4e7;
+    --border-subtle: #f4f4f5;
+    --text-main: #09090b;
+    --text-muted: #52525b;
+    --badge-bg: #f4f4f5;
+    --badge-border: #e4e4e7;
+    --badge-text: #09090b;
+    --assistant-avatar-bg: #09090b;
+    --assistant-avatar-text: #ffffff;
+    background-color: #ffffff;
+    color: #09090b;
+  }
+
+  /* CLASSIC CHATGPT DARK THEME */
+  .theme-chatgpt {
+    --bg-main: #212121;
+    --bg-sidebar: #171717;
+    --bg-surface: #262626;
+    --bg-surface-hover: #2f2f2f;
+    --bg-input: #2f2f2f;
+    --bg-bubble-user: #2f2f2f;
+    --text-bubble-user: #ececec;
+    --bg-accent: #10a37f;
+    --text-accent: #ffffff;
+    --border-color: #383838;
+    --border-subtle: #2e2e2e;
+    --text-main: #ececec;
+    --text-muted: #a1a1aa;
+    --badge-bg: #2a2a2a;
+    --badge-border: #3d3d3d;
+    --badge-text: #10a37f;
+    --assistant-avatar-bg: #10a37f;
+    --assistant-avatar-text: #ffffff;
+    background-color: #212121;
+    color: #ececec;
   }
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  height: 100vh;
+  overflow: hidden;
+  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(125, 125, 125, 0.25);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(125, 125, 125, 0.45);
+}
+
+/* Markdown typography matching theme */
+.prose-chatgpt {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+.theme-bw-dark .prose-chatgpt {
+  color: #ffffff;
+}
+
+.theme-bw-light .prose-chatgpt {
+  color: #09090b;
+}
+
+.theme-bw-dark .prose-chatgpt h1, 
+.theme-bw-dark .prose-chatgpt h2, 
+.theme-bw-dark .prose-chatgpt h3 {
+  color: #ffffff;
+}
+
+.theme-bw-light .prose-chatgpt h1, 
+.theme-bw-light .prose-chatgpt h2, 
+.theme-bw-light .prose-chatgpt h3 {
+  color: #09090b;
+}
+
+.prose-chatgpt h1, 
+.prose-chatgpt h2, 
+.prose-chatgpt h3, 
+.prose-chatgpt h4 {
+  font-weight: 600;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-chatgpt h1 { font-size: 1.35rem; }
+.prose-chatgpt h2 { font-size: 1.15rem; }
+.prose-chatgpt h3 { font-size: 1.05rem; }
+
+.prose-chatgpt p {
+  margin-bottom: 0.85rem;
+}
+
+.prose-chatgpt ul {
+  list-style-type: disc;
+  padding-left: 1.4rem;
+  margin-bottom: 0.85rem;
+}
+
+.prose-chatgpt ol {
+  list-style-type: decimal;
+  padding-left: 1.4rem;
+  margin-bottom: 0.85rem;
+}
+
+.prose-chatgpt li {
+  margin-bottom: 0.35rem;
+}
+
+.prose-chatgpt strong {
+  font-weight: 600;
+}
+
+.theme-bw-dark .prose-chatgpt strong {
+  color: #ffffff;
+}
+
+.theme-bw-light .prose-chatgpt strong {
+  color: #000000;
+}
+
+.prose-chatgpt blockquote {
+  border-left: 3px solid currentColor;
+  padding-left: 0.85rem;
+  font-style: italic;
+  opacity: 0.85;
+  margin-bottom: 0.85rem;
+}
+
+.prose-chatgpt hr {
+  border-color: currentColor;
+  opacity: 0.15;
+  margin: 1.25rem 0;
+}
+
+/* Animations */
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
