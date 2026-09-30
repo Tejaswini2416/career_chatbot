@@ -192,16 +192,7 @@ Apex ships with **3 built-in themes** togglable from the header:
 
 ---
 
-## 📄 License
-
-MIT License — free to use and modify.
-
----
-
 ## 👩‍💻 Author
 
 **Tejaswini** — [@Tejaswini2416](https://github.com/Tejaswini2416)
 
----
-
-*Built with ❤️ using Next.js 14, TypeScript, Tailwind CSS, and the OpenAI API*
